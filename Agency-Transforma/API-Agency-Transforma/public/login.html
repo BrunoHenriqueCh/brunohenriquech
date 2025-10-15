@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ag.Transforma | Página Inicial</title>
+
+    <script src="./assets/js/funcoes.js"></script>
+
+    <link rel="stylesheet" href="loginstyle.css">
+</head>
+
+<body>
+
+    <!--Header-->
+
+    <div class="header">
+    
+        <div class="container">
+            
+           <a href="index.html"><img src="logo.jpeg"></a>
+
+            <div class="transforma">Transformando seu negócio através das redes sociais</div>
+
+            <ul class="navbar"> 
+                <li><a href="Cadastro.html">Cadastro</a></li>
+                <li class="active"><a href="Login.html" >Login</a></li>
+            
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="cadastro_template">
+        <img src="Template cadastro.png">
+        <div class="cadastro"><h1>Login</h1></div>
+        <div class="div_inputs">
+
+                <div class="inputs">
+                    <form id="form_login" method="post" onsubmit="return entrar()">
+                        <h2>Email:</h2>
+                        <input name="email" type="text" id="ipt_email">
+                        
+                        <h2>Senha:</h2>
+                        <input name="senha" type="password" id="ipt_senha">
+                       
+                        <button class="btn" type="submit">
+                            Entrar
+                        </button>
+                    </form>
+
+
+                 </div>
+
+                   <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif" style="display: none;">
+                    </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+  
+
+    <!-- modal?
+
+    <div id="div_modal" class="div-modal">
+        <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
+        </div>
+        <div id="modal_container" class="modal-container">
+            <button onclick="fecharModal()">fechar modal</button>
+        </div>
+    </div> -->
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_login").reset();
+    }
+
+    function entrar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_login")));
+
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (email == "" || senha == "") {
+            window.alert("Preencha todos os campos para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        if (email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/meudashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

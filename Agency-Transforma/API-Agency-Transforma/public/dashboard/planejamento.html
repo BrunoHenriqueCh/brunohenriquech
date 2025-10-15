@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ag_Transforma</title>
+    <link rel="stylesheet" href="planejamento.css">
+
+    <script src="../assets/js/funcoes.js"></script>
+
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+</head>
+<body>
+    <div class="header">
+            
+        <img src="logo-branca.jpeg">
+
+       
+        <div class="azul">
+
+            <img src="quadradinhos-azuis.jpeg">
+        </div>
+        
+        
+        <div class="planejamento_titulo"> Planejamento da semana</div>
+    
+        <img src="seta colorida.jpeg" >
+
+        <h3 class="voltar" onclick="voltar_dash()">Voltar</h3>
+
+        <div  class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+        </div>
+
+    </div> 
+
+
+    <button onclick="ver()" class="button_planejamento" id="btn">Ver planejamento</button>
+
+    <div class="div_planejamentos" style="display: none;" id="div_ver_planejamentos"></div> <br>
+    
+    <button class="validar" onclick="validar()" style="display: none;" id="btn_validar">Validar posts</button>
+
+   
+
+</body>
+</html>
+
+<script>
+    var vt_dias = [];
+    var vt_validados=[];
+
+
+    function voltar_dash() {
+        window.location = "meudashboard.html";
+    }
+
+    function ver() {
+        btn.style.display = 'none';
+        btn_validar.style.display = 'block';
+
+        div_ver_planejamentos.style.display = 'block';
+
+        var intervalo = ((Math.random() * 3) + 1).toFixed(0);
+
+        for(var i = 1; i < 8; i ++) {
+
+            var dia_semana = '';
+            var postagem = '';
+
+            if (i == 1) {
+                dia_semana = 'Segunda'
+            } else if (i == 2) {
+                dia_semana = 'Terça'
+            } else if (i == 3) {
+                dia_semana = 'Quarta'
+            } else if (i == 4) {
+                dia_semana = 'Quinta'
+            } else if (i == 5) {
+                dia_semana = 'Sexta'
+            } else if (i == 6) {
+                dia_semana = 'Sábado'
+            } else if (i == 7) {
+                dia_semana = 'Domingo'
+            }
+
+            if(intervalo == 1 && i % intervalo == 0) {
+                postagem = 'Postagem'
+                div_ver_planejamentos.innerHTML += `${dia_semana}: <b style="color: rgb(253, 30, 123);"> ${postagem} </b> <br>`
+                vt_dias.push(dia_semana);
+            } else if (intervalo == 2 && i % intervalo == 0) {
+                postagem = 'Postagem'
+                div_ver_planejamentos.innerHTML += `${dia_semana}: <b style="color: rgb(253, 30, 123);"> ${postagem} </b> <br>`
+                vt_dias.push(dia_semana);
+            } else if (intervalo == 3 && i % intervalo == 0) {
+                postagem = 'Postagem'
+                div_ver_planejamentos.innerHTML += `${dia_semana}: <b style="color: rgb(253, 30, 123);"> ${postagem} </b> <br>`
+                vt_dias.push(dia_semana);
+            } else if  (intervalo == 4 && i % intervalo == 0) {
+                postagem = 'Postagem'
+                div_ver_planejamentos.innerHTML += `${dia_semana}: <b style="color: rgb(253, 30, 123);"> ${postagem} </b> <br>`
+                vt_dias.push(dia_semana);
+            }else {
+                postagem = '';
+                div_ver_planejamentos.innerHTML += `${dia_semana}<br>`
+            }
+        }
+    }
+
+    function validar() {
+        div_ver_planejamentos.innerHTML = '';
+        btn_validar.style.display = 'none';
+
+        for (i = 1; i <= vt_dias.length; i ++) {
+            div_ver_planejamentos.innerHTML += `${vt_dias[i - 1]} <input type="checkbox" onchange="verificarCheckbox()" id="check${i}"  value="${vt_dias[i - 1]}"> <br>`
+        }
+
+    }
+
+    function verificarCheckbox() {
+        
+        if(check1.checked == true && check1 !== undefined) {
+            vt_validados.push(check1.value);
+            alert(`${check1.value} Validada!`)
+        }
+
+        if(check2.checked == true && check2 !== undefined) {
+            vt_validados.push(check2.value);
+            alert(`${check2.value} Validada!`)
+        } 
+
+        if(check3.checked == true && check3 !== undefined) {
+            vt_validados.push(check3.value);
+            alert(`${check3.value} Validada!`)
+        } 
+
+        if(check4.checked == true && check4 !== undefined) {
+            vt_validados.push(check4.value);
+            alert(`${check4.value} Validada!`)
+        } 
+
+        if(check5.checked == true && check5 !== undefined) {
+            vt_validados.push(check5.value);
+            alert(`${check5.value} Validada!`)
+        } 
+
+        if(check6.checked == true && check6 !== undefined) {
+            vt_validados.push(check6.value);
+            alert(`${check6.value} Validada!`)
+        }
+
+        if(check7.checked == true && check7 !== undefined) {
+            vt_validados.push(check7.value);
+            alert(`${check7.value} Validada!`)
+        }
+    }
+</script>

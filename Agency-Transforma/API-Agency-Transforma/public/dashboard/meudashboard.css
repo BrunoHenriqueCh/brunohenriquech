@@ -1,0 +1,230 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    max-height: 100vh;
+    background-color: rgb(161, 207, 207);
+
+}
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+
+
+width: 98.5vw;
+height: 15vh;
+background-color: rgb(24, 24, 58);
+border-bottom: 1px solid rgb(241, 241, 241);
+border-bottom-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
+.header img {
+    width: 80px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+.azul img{
+    width: 80px;
+    border-radius: 0;
+}
+
+.hello {
+    color: rgb(241, 241, 241);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 50px;
+}
+.btn-logout{
+    margin-right: 100px;
+    color: rgb(241, 241, 241);
+}
+.btn-logout:hover h3{
+    color: rgb(242, 136, 88);
+}
+.header-left {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(24, 24, 58);
+    border-right: 2px solid rgb(20, 37, 67);
+    border-bottom: 2px solid rgb(20, 37, 67);
+    width: 15vw;
+    height: 150vh;
+}
+
+
+.planejamento {
+    position: relative;
+    top: 7vh;
+    height: 100px;
+    width: 50vw;
+
+    background: rgb(26, 26, 60);
+    color: rgb(247, 103, 51) ;
+    border: 2px rgb(253, 30, 123) solid;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    transition: 1s;
+}
+.planejamento:hover {
+    background: #fff;
+    color: rgb(88, 0, 192);
+}
+
+
+.bolinhas_navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    height: 800px;
+}
+.bolinhas_navbar img{
+    width: 80px;
+    border-radius: 50%;
+}
+.bolinhas_navbar h1{
+    color: rgb(232, 2, 98);
+    margin-left: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+.metricas{
+    color: rgb(232, 2, 98);
+    margin-left: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+.bolinhas_navbar h2{
+    color: rgb(241, 241, 241);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.bolinha-roxa{
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: linear-gradient(rgb(129, 81, 143), rgb(93, 47, 109), rgb(129, 81, 143));
+}
+.bolinha-verde{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(rgb(3, 245, 63), rgb(23, 204, 69), rgb(3, 245, 63));   
+}
+.bolinha-amarela {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(rgb(255, 235, 11), rgb(211, 195, 20), rgb(247, 228, 18));   
+}
+.bolinha-vermelha {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient( rgb(232, 2, 98), rgb(194, 24, 95), rgb(232, 2, 98)); 
+}
+.bolinha-laranja{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(rgb(242, 136, 88), rgb(202, 90, 38), rgb(242, 136, 88)); 
+}
+.bolinha-azul{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background:linear-gradient(rgb(161, 207, 207), rgb(120, 208, 208), rgb(164, 235, 235)); 
+}
+.bolinha-branca{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background:linear-gradient(rgb(241, 241, 241), rgb(216, 207, 207), rgb(241, 241, 241)); 
+}
+
+.dash {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    position: relative;
+    left: 380px;
+    bottom: 800px;
+}
+.dash h2 {
+    color: rgb(20, 37, 67);
+    margin-left: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+.amarelo {
+    position: absolute;
+    left: 1150px;
+    bottom: 450px;
+    background: linear-gradient(rgb(255, 235, 11), rgb(211, 195, 20), rgb(247, 228, 18));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.verde{
+    position: absolute;
+    left: 1050px;
+    bottom: 350px;
+    background: linear-gradient(rgb(3, 245, 63), rgb(23, 204, 69), rgb(3, 245, 63));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.vermelho {
+    position: absolute;
+    left: 1180px;
+    bottom: 300px;
+    background: linear-gradient(rgb(232, 2, 98), rgb(194, 24, 95), rgb(232, 2, 98));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.laranja{
+    position: absolute;
+    left: 1070px;
+    bottom: 100px;
+    background: linear-gradient(rgb(242, 136, 88), rgb(202, 90, 38), rgb(242, 136, 88));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.roxo{
+    position: absolute;
+    left: 1200px;
+    bottom: 20px;
+    background: linear-gradient(rgb(129, 81, 143), rgb(93, 47, 109), rgb(129, 81, 143));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.azul-claro{
+    position: absolute;
+    left: 1050px;
+    top: 600px;
+    background: linear-gradient(rgb(161, 207, 207), rgb(120, 208, 208), rgb(164, 235, 235));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.azul-escuro {
+position: absolute;
+right: 800px;
+top: 798px;
+width: 300px;
+height: 300px;
+border-top-right-radius: 300px;
+background: linear-gradient(rgb(24, 24, 58),rgb(26, 46, 83),rgb(34, 64, 118))  ;
+}

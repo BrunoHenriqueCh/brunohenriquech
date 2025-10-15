@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ag.Transforma| Página Inicial</title>
+
+    
+    <script src="./assets/js/funcoes.js"></script>
+    
+    
+    <link rel="stylesheet" href="cadastrostyle.css">
+    
+    
+</head>
+
+<body>
+
+    <!--header inicio-->
+    <div class="header">
+    
+        <div class="container">
+            
+           <a href="index.html"><img src="logo.jpeg"></a>
+
+            <div class="transforma">Transformando seu negócio através das redes sociais</div>
+
+            <ul class="navbar"> 
+
+                <li class="active"><a href="Cadastro.html">Cadastro</a></li>
+                <li><a href="Login.html">Login</a></li>
+            
+            </ul>
+        </div>
+    </div>
+    <!--header fim-->
+
+    <div class="cadastro_template ">
+        <img src="Template cadastro.png">
+        <div class="cadastro"><h1>Cadastro</h1></div>
+        <div class="div_inputs ">
+
+            <div class="inputs">
+
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                        <h2 class="usuario_texto">Nome de usuário:</h2>
+                        <input name="nome" type="text" >
+                        
+                        <h2>Email:</h2>
+                        <input name="email" type="text" >
+                        
+                        <h2>Senha:</h2>
+                        <input name="senha" type="password" onkeyup="senhaforte()" >
+                        <div id="forca_senha" style="font-weight: bolder;"></div>
+                        
+                      
+                        <h2 class="confirm_texto">Confirme sua senha:</h2>
+                        <div id="coincidir" style="font-weight: bolder;"></div>
+                        <input name="confirmacao-senha" type="password" onkeyup="senhaforte()">
+                       
+                        <button class="btn">Cadastrar</button>
+                    </form>
+                
+                  <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif" style="display: none;">
+                   </div>
+
+                <div id="div_erros_login">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+   
+    <!--footer fim-->
+    
+
+</body>
+
+</html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_cadastro").reset();
+    }
+
+    function cadastrar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var nome = formulario.get("nome");
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacao-senha");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
+            
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (nome == "")  {
+                console.log('nome está em branco')
+            }
+            if (email == "" )  {
+                console.log('email está em branco')
+            }
+            if (senha == "" )  {
+                console.log('senha está em branco')
+            }
+            if (confirmacaoSenha == "" )  {
+                console.log('confirmacaoSenha está em branco')
+            }
+            finalizarAguardar();
+            return false;
+        }
+        
+        if (email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
+            window.alert("email deve conter @ e .com");
+            finalizarAguardar();
+            return false;
+        }
+        
+        if (senha != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function senhaforte() {
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacao-senha");
+
+    if (senha.length >= 10) {
+    forca_senha.innerHTML = "Senha forte!";
+    forca_senha.style.color = "green";
+    }  else if (senha.length >= 5) {
+    forca_senha.innerHTML = "Senha média!";
+    forca_senha.style.color = "yellow";
+    }  else if (senha.length >= 1) {
+    forca_senha.innerHTML = "Senha fraca!";
+    forca_senha.style.color = 'red';
+    }
+
+    
+    if (senha != confirmacaoSenha) {
+        coincidir.innerHTML = "As senhas devem coincidir!"
+        coincidir.style.color = "red";
+    } else {
+        coincidir.innerHTML = "";
+    }
+
+  
+
+}
+
+
+</script>
